@@ -20,7 +20,7 @@ export const initDB = () => {
   // 기존 DB에 routineType 컬럼이 없다면 추가 (마이그레이션)
   try {
     db.execSync("ALTER TABLE tasks ADD COLUMN routineType TEXT DEFAULT 'relative';");
-  } catch (e) {
+  } catch {
     // 이미 존재하는 경우 무시
   }
 };

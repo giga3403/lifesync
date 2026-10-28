@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { parseISO } from 'date-fns';
 import { Task, getAllTasks, updateTaskDates } from '../db/queries';
 import { calculateNextDueDate, getTodayString } from '../utils/dateUtils';
 
@@ -19,7 +20,6 @@ export const useTaskStore = create<TaskStore>((set, get) => ({
     const todayStr = getTodayString();
     
     if (task.type === 'routine' && task.periodValue && task.periodUnit) {
-      const { parseISO } = require('date-fns');
       let baseDate = new Date();
       
       // 고정 주기인 경우, 기존의 예정일을 기준으로 다음 날짜 계산
